@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th colspan="2"><h2>Read QueryString</h2></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="span1">key</th><th class="span1">value</th>
+        </tr>
+    @{
+        // Get names of all keys into a string array.
+        var qs =  HttpContext.Current.Request.QueryString; 
+        foreach(string key in qs.AllKeys) {
+            <tr>
+                <td class="span1">@key</td><td class="span1">@qs[key]</td>
+            </tr>
+        }
+    }</tbody>
+</table>
