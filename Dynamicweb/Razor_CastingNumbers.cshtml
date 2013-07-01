@@ -1,0 +1,50 @@
+@using  System.Reflection
+@using  System.Web
+@using  System
+@using  System.Numerics
+<!-- Razor_CastingNumbers.cshtml -->
+ <div class="row">
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th colspan="4">Casting numbers.</th>
+    </tr>
+    <tr>
+        <td colspan="4">
+            Three number types are casted to the <code>System.Int32</code>.
+        </td>
+    </tr>
+</thead>
+    <tbody>@{
+        long lNumber = 163245617;
+        try {
+           int number1 = (int) lNumber;
+           @String.Format("<tr><td><a href=\"http://msdn.microsoft.com/en-us/library/{0}.aspx\" target=\"_blank\">{0}</a></td><td>{1}</td><td><a href=\"http://msdn.microsoft.com/en-us/library/{2}.aspx\" target=\"_blank\">{2}</a></td><td>{3}</td></tr>", lNumber.GetType(), lNumber, number1.GetType(), number1);
+        }
+        catch (OverflowException) {
+           @String.Format("<tr><td>out of range of an Int32</td><td>{0}</td></tr>", lNumber);
+        }
+        double dbl2 = 35901.997;
+        try {
+          int number2 = (int) dbl2;
+          @String.Format("<tr><td><a href=\"http://msdn.microsoft.com/en-us/library/{0}.aspx\" target=\"_blank\">{0}</a></td><td>{1}</td><td><a href=\"http://msdn.microsoft.com/en-us/library/{2}.aspx\" target=\"_blank\">{2}</a></td><td>{3}</td></tr>", dbl2.GetType(), dbl2, number2.GetType(), number2);
+        }   
+        catch (OverflowException) {
+          @String.Format("<tr><td>out of range of an Int32</td><td>{0}</td></tr>", dbl2);
+        }
+        BigInteger bigNumber = 132451;
+        try {
+           int number3 = (int) bigNumber;
+           @String.Format("<tr><td><a href=\"http://msdn.microsoft.com/en-us/library/{0}.aspx\" target=\"_blank\">{0}</a></td><td>{1}</td><td><a href=\"http://msdn.microsoft.com/en-us/library/{2}.aspx\" target=\"_blank\">{2}</a></td><td>{3}</td></tr>", bigNumber.GetType(), bigNumber, number3.GetType(), number3);
+        }
+        catch (OverflowException) {
+           @String.Format("<tr><td>out of range of an Int32</td><td>{0}</td></tr>", bigNumber);
+        }
+        }
+        <tr>
+          <th colspan="4">
+            Code inspired by example found at <a href="http://msdn.microsoft.com/en-us/library/System.Int32.aspx">MSDN</a>
+          </th>
+        </tr>
+        </tbody>
+</table>
